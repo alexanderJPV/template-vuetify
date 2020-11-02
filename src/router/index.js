@@ -1,4 +1,4 @@
-import Vue from 'vue'
+    import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
@@ -155,7 +155,8 @@ export const routes = [
                 meta:{
                     title:'Icons',
                     icon:'mdi-grease-pencil'
-                }
+                },
+                component: () => import('@/components/sfe-admin/Icons')
             },
             // Notifications
             {
@@ -166,14 +167,15 @@ export const routes = [
                     icon:'mdi-bell'
                 }
             },
-            // Settings
+            // Settings/About
             {
                 path: '/about',
                 name: 'about',
                 meta:{
                     title:'About',
                     icon:'mdi-help-box'
-                }
+                },
+                component: () => import('@/components/sfe-admin/About')
             }
         ],
     }
