@@ -1,0 +1,182 @@
+<v-container id="signinup-form" class="fill-height">
+    <v-row align="center" justify="center" no-gutters>
+        <v-col cols="12" sm="8" md="8">
+            <v-card class="evelation-12 card">
+                <v-window v-model="step">
+                    <!-- Sign In -->
+                    <v-window-item :value="1">
+                        <v-row>
+                            <v-col cols="12" md="8" class="pt-6 pb-6">
+                                <v-card-text>
+                                    <v-form class="signup-form-form">
+                                        <h1 class="text-center display-1 mb-10"
+                                            :class="`${bgColor}--text`">
+                                            Sign In
+                                        </h1>
+                                        <v-text-field
+                                            id="username"
+                                            label="Username"
+                                            name="Username"
+                                            append-icon="mdi-account"
+                                            type="text"
+                                            :color="bgColor"
+                                        />
+                                        <v-text-field
+                                            id="password"
+                                            label="Password"
+                                            name="Password"
+                                            append-icon="mdi-lock"
+                                            type="password"
+                                            :color="bgColor"
+                                        />
+                                        <div class="text-center">
+                                            <a
+                                                href="#"
+                                                class="mt-3 overline text-decoration-none"
+                                                :class="`${bgColor}--text`"
+                                                @click="step = 3">Forgot your password?</a>
+                                        </div>
+                                        <div class="text-center mt-6">
+                                            <v-btn type="submit" :color="bgColor" to='/' dark>
+                                                Sign In
+                                            </v-btn>
+                                        </div>
+                                    </v-form>
+                                </v-card-text>
+                            </v-col>
+                            <v-col
+                                cols="12"
+                                md="4"
+                                class="darken-2 vcenter"
+                                :class="bgColor"
+                            >
+                                <div>
+                                    <v-card-text :class="`${fgColor}--text`">
+                                        <h1 class="text-center headline mb-3">No user?</h1>
+                                        <h5 class="text-center overline mb-3"> Please Sign Up to continue</h5>
+                                    </v-card-text>
+                                    <div class="text-center mb-6">
+                                        <v-btn dark outlined @click="step = 2">SIGN UP</v-btn>
+                                    </div>
+                                </div>
+                          </v-col>
+                        </v-row>
+                    </v-window-item>
+                    <!-- Fin Sign In -->
+                    <!--SignUp-->
+                    <v-window-item :value="2">
+                        <v-row class="fill-height">
+                          <v-col
+                            cols="12"
+                            md="4"
+                            class="darken-2 vcenter"
+                            :class="`${bgColor}`"
+                          >
+                            <div>
+                              <v-card-text :class="`${fgColor}--text`">
+                                <h1 class="text-center headline mb-3">Already a user?</h1>
+                                <h5 class="text-center overline mb-3">Please Sign In</h5>
+                              </v-card-text>
+                              <div class="text-center mb-6">
+                                <v-btn dark outlined @click="step = 1">Sign In</v-btn>
+                              </div>
+                            </div>
+                          </v-col>
+                          <v-col cols="12" md="8" class=" pt-6 pb-6">
+                            <v-card-text>
+                              <h1
+                                class="text-center display-1 mb-10"
+                                :class="`${bgColor}--text`"
+                              >
+                                Sign Up
+                              </h1>
+                              <v-form class="signup-form-form" @submit.prevent="signup">
+                                <v-text-field
+                                  id="username"
+                                  v-model="username"
+                                  label="Username"
+                                  name="username"
+                                  append-icon="mdi-account"
+                                  type="text"
+                                />
+                                <v-text-field
+                                  id="email"
+                                  v-model="email"
+                                  label="eMail"
+                                  name="email"
+                                  append-icon="mdi-email"
+                                  type="email"
+                                />
+                                <v-text-field
+                                  id="password"
+                                  v-model="password"
+                                  label="Password"
+                                  name="password"
+                                  append-icon="mdi-lock"
+                                  type="password"
+                                />
+                                <div class="text-center mt-6">
+                                  <v-btn type="submit" large :color="bgColor" dark>
+                                    Sign Up</v-btn
+                                  >
+                                </div>
+                              </v-form>
+                            </v-card-text>
+                          </v-col>
+                        </v-row>
+                      </v-window-item>
+                    <!--Fin SignUp-->
+                    <!--PW Rest-->
+                    <v-window-item :value="3">
+                        <v-row class="fill-height">
+                        <v-col
+                            cols="12"
+                            md="4"
+                            class="darken-2 vcenter"
+                            :class="`${bgColor}`"
+                        >
+                            <div>
+                            <v-card-text :class="`${fgColor}--text`">
+                                <h1 class="text-center headline mb-3">Already a user?</h1>
+                                <h5 class="text-center overline mb-3">Please Sign In</h5>
+                            </v-card-text>
+                            <div class="text-center mb-6">
+                                <v-btn dark outlined @click="step = 1" to='/'>Sign In</v-btn>
+                            </div>
+                            </div>
+                        </v-col>
+                        <v-col cols="12" md="8" class="pt-6 pb-6">
+                            <v-card-text>
+                            <v-form class="signup-form-form">
+                                <h1
+                                class="text-center display-1 mb-10"
+                                :class="`${bgColor}--text`"
+                                >
+                                Reset Password
+                                </h1>
+                                <v-text-field
+                                id="login"
+                                v-model="login"
+                                label="Username / eMail"
+                                name="login"
+                                append-icon="mdi-lock"
+                                type="text"
+                                :color="bgColor"
+                                class="v-input__icon--double"
+                                />
+                                <div class="text-center mt-6">
+                                <v-btn large :color="bgColor" dark
+                                    >Reset Password</v-btn
+                                >
+                                </div>
+                            </v-form>
+                            </v-card-text>
+                        </v-col>
+                        </v-row>
+                    </v-window-item>
+                    <!--Fin PW Rest-->
+                </v-window>
+            </v-card>
+        </v-col>
+    </v-row>
+</v-container>
