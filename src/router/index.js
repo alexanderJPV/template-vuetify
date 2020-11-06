@@ -1,14 +1,35 @@
-    import Vue from 'vue'
+import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
 export const routes = [
+    {
+        path: '*',
+        component: () => import('@/views/error/NotFound.vue')
+    },
     // Login
     {
         path:'/login',
         name:'login',
         component: () => import('../views/SfeLogin.vue'),
+    },
+    // Page 404 and 500
+    {
+        path: '/404',
+        name: '404',
+        meta: {
+          title: 'Not Found'
+        },
+        component: () => import('@/views/error/NotFound.vue')
+    },
+    {
+        path: '/500',
+        name: '500',
+        meta: {
+          title: 'Server Error'
+        },
+        component: () => import('@/views/error/Error.vue')
     },
     // Admin interface
     {
@@ -139,14 +160,33 @@ export const routes = [
                     icon: 'mdi-tools'
                 },
             },
-            // Photos
+            // Media
             {
-                path: '/photos',
-                name: 'photos',
+                path: '/media',
+                name: 'media',
                 meta:{
-                    title: 'Photos',
+                    title: 'Media',
                     icon: 'mdi-image'
-                }
+                },
+                component: () => import('@/components/sfe-admin/Media'),
+                children:[
+                    {
+                        path: '/photos',
+                        name: 'photos',
+                        meta: {
+                            title: 'Photos',
+                        },
+                        component: () => import('@/components/sfe-admin/Media/Photos')
+                    },
+                    {
+                        path: '/multimedia',
+                        name: 'multimedia',
+                        meta: {
+                            title: 'Multimedia',
+                        },
+                        component: () => import('@/components/sfe-admin/Media/Multimedia')
+                    }
+                ]
             },
             // Icons
             {
@@ -176,7 +216,7 @@ export const routes = [
                     icon:'mdi-help-box'
                 },
                 component: () => import('@/components/sfe-admin/About')
-            }
+            },
         ],
     }
 ]

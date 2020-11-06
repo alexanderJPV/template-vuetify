@@ -1,4 +1,4 @@
-    <template>
+<template>
   <!-- Navbar head-->
     <v-app-bar
         absolute
@@ -7,7 +7,7 @@
         flat
         height="65"
     >
-        <!--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXxx Boton repliegue -->
+        <!-- Boton repliegue -->
         <v-btn
             class="mr-3 indigo--text"
             elevation="1"
@@ -43,6 +43,13 @@
             </template>
         </v-text-field>
         <div class="mx-3" />
+        <v-btn
+            icon
+            text
+            fab
+            @click="handleFullScreen()">
+            <v-icon>fullscreen</v-icon>
+        </v-btn>
         <v-btn
             class="ml-2 indigo--text"
             min-width="0"
@@ -160,6 +167,32 @@ export default {
         method(){
             alert(this.drawer);
         },
+        handleFullScreen(){
+            let doc = window.document
+            let docEl = doc.documentElement
+
+            let requestFullScreen =
+                docEl.requestFullscreen ||
+                docEl.mozRequestFullScreen ||
+                docEl.webkitRequestFullScreen ||
+                docEl.msRequestFullscreen
+            let cancelFullScreen =
+                doc.exitFullscreen ||
+                doc.mozCancelFullScreen ||
+                doc.webkitExitFullscreen ||
+                doc.msExitFullscreen
+
+            if (
+                !doc.fullscreenElement &&
+                !doc.mozFullScreenElement &&
+                !doc.webkitFullscreenElement &&
+                !doc.msFullscreenElement
+            ) {
+                requestFullScreen.call(docEl)
+            } else {
+                cancelFullScreen.call(doc)
+            }
+        }
     },
     created: function(){
         // const { matched } = this.$route

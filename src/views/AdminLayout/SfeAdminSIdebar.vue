@@ -119,7 +119,7 @@ export default{
       }
     },
     computedMenu(){
-      return routes[1].children;
+      return routes[4].children;
     }
   },
   // created: function(){
