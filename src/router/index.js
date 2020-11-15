@@ -159,6 +159,25 @@ export const routes = [
                     title: 'Ui Utils',
                     icon: 'mdi-tools'
                 },
+                component: () => import('@/components/sfe-admin/UiUtils'),
+                children:[
+                    {
+                        path: '/typograpy',
+                        name: 'typograpy',
+                        meta:{
+                            title: 'Typography'
+                        },
+                        component: () => import('@/components/sfe-admin/UiUtils/typography')
+                    },
+                    {
+                        path: '/map',
+                        name: 'map',
+                        meta:{
+                            title: 'Map'
+                        },
+                        component: () => import('@/components/sfe-admin/UiUtils/maps')
+                    }
+                ]
             },
             // Media
             {
@@ -205,7 +224,8 @@ export const routes = [
                 meta:{
                     title:'Notifications',
                     icon:'mdi-bell'
-                }
+                },
+                component: () => import('@/components/sfe-admin/Notifications')
             },
             // Settings/About
             {
